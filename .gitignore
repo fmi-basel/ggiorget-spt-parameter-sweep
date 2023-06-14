@@ -1,0 +1,17 @@
+tutorial/
+benchmark_spot_detection/H_max_test_aileen/
+benchmark_spot_detection/H_max/results/
+benchmark_spot_detection/LoG/results/
+benchmark_spot_detection/LoG/.ipynb_checkpoints/
+benchmark_spot_detection/LoG/.snakemake/
+benchmark_spot_detection/H_max/.ipynb_checkpoints/
+benchmark_spot_detection/H_max/.snakemake/
+benchmark_spot_detection/LoG/__pycache__/
+benchmark_spot_detection/H_max/__pycache__/
+benchmark_spot_detection/LoG/test_file_combination.ipynb
+benchmark_spot_detection/H_max/scripts/__pycache__/
+benchmark_tracking/.snakemake/
+benchmark_tracking/.ipynb_checkpoints/
+benchmark_tracking/src/__pycache__/
+benchmark_tracking/final_dataframes/
+benchmark_tracking/results

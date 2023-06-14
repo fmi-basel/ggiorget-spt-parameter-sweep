@@ -1,0 +1,515 @@
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+	0[label = "all", color = "0.58 0.6 0.85", style="rounded"];
+	1[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	2[label = "filter_frame_rate\nseq: 0", color = "0.50 0.6 0.85", style="rounded"];
+	3[label = "open_ground_truth", color = "0.08 0.6 0.85", style="rounded"];
+	4[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	5[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	6[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	7[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	8[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	9[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	10[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	11[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	12[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	13[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	14[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	15[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	16[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	17[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	18[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	19[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	20[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	21[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	22[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	23[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	24[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	25[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	26[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.0", color = "0.42 0.6 0.85", style="rounded"];
+	27[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	28[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	29[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	30[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	31[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	32[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	33[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	34[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	35[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	36[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	37[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	38[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	39[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	40[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	41[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	42[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	43[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	44[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	45[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	46[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	47[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	48[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	49[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	50[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.1", color = "0.42 0.6 0.85", style="rounded"];
+	51[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	52[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	53[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	54[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	55[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	56[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	57[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	58[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	59[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	60[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	61[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	62[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	63[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	64[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	65[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	66[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	67[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	68[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	69[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	70[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	71[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	72[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	73[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	74[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.2", color = "0.42 0.6 0.85", style="rounded"];
+	75[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	76[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	77[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	78[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	79[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	80[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	81[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	82[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	83[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	84[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	85[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	86[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	87[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	88[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	89[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	90[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	91[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	92[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	93[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	94[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	95[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	96[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	97[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	98[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.3", color = "0.42 0.6 0.85", style="rounded"];
+	99[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	100[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	101[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	102[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	103[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	104[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	105[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	106[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	107[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	108[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	109[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	110[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	111[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	112[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	113[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	114[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	115[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	116[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	117[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	118[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	119[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	120[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	121[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	122[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.5", color = "0.42 0.6 0.85", style="rounded"];
+	123[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	124[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	125[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	126[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	127[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	128[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	129[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	130[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	131[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	132[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	133[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	134[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	135[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	136[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	137[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	138[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	139[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	140[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	141[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	142[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	143[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	144[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	145[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	146[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 1.7", color = "0.42 0.6 0.85", style="rounded"];
+	147[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	148[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	149[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	150[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	151[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	152[label = "build_tracks\ngap_closing_cost_cutoff: 2.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	153[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	154[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	155[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	156[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	157[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	158[label = "build_tracks\ngap_closing_cost_cutoff: 2.5\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	159[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	160[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	161[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	162[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	163[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	164[label = "build_tracks\ngap_closing_cost_cutoff: 3.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	165[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	166[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 0\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	167[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	168[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 1\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	169[label = "evaluate_tracks", color = "0.17 0.6 0.85", style="rounded"];
+	170[label = "build_tracks\ngap_closing_cost_cutoff: 4.0\ngap_closing_max_frame_count: 2\ntrack_cost_cutoff: 2.0", color = "0.42 0.6 0.85", style="rounded"];
+	1 -> 0
+	5 -> 0
+	7 -> 0
+	9 -> 0
+	11 -> 0
+	13 -> 0
+	15 -> 0
+	17 -> 0
+	19 -> 0
+	21 -> 0
+	23 -> 0
+	25 -> 0
+	27 -> 0
+	29 -> 0
+	31 -> 0
+	33 -> 0
+	35 -> 0
+	37 -> 0
+	39 -> 0
+	41 -> 0
+	43 -> 0
+	45 -> 0
+	47 -> 0
+	49 -> 0
+	51 -> 0
+	53 -> 0
+	55 -> 0
+	57 -> 0
+	59 -> 0
+	61 -> 0
+	63 -> 0
+	65 -> 0
+	67 -> 0
+	69 -> 0
+	71 -> 0
+	73 -> 0
+	75 -> 0
+	77 -> 0
+	79 -> 0
+	81 -> 0
+	83 -> 0
+	85 -> 0
+	87 -> 0
+	89 -> 0
+	91 -> 0
+	93 -> 0
+	95 -> 0
+	97 -> 0
+	99 -> 0
+	101 -> 0
+	103 -> 0
+	105 -> 0
+	107 -> 0
+	109 -> 0
+	111 -> 0
+	113 -> 0
+	115 -> 0
+	117 -> 0
+	119 -> 0
+	121 -> 0
+	123 -> 0
+	125 -> 0
+	127 -> 0
+	129 -> 0
+	131 -> 0
+	133 -> 0
+	135 -> 0
+	137 -> 0
+	139 -> 0
+	141 -> 0
+	143 -> 0
+	145 -> 0
+	147 -> 0
+	149 -> 0
+	151 -> 0
+	153 -> 0
+	155 -> 0
+	157 -> 0
+	159 -> 0
+	161 -> 0
+	163 -> 0
+	165 -> 0
+	167 -> 0
+	169 -> 0
+	3 -> 0
+	2 -> 0
+	2 -> 1
+	4 -> 1
+	3 -> 2
+	2 -> 4
+	2 -> 5
+	6 -> 5
+	2 -> 6
+	2 -> 7
+	8 -> 7
+	2 -> 8
+	2 -> 9
+	10 -> 9
+	2 -> 10
+	2 -> 11
+	12 -> 11
+	2 -> 12
+	2 -> 13
+	14 -> 13
+	2 -> 14
+	2 -> 15
+	16 -> 15
+	2 -> 16
+	2 -> 17
+	18 -> 17
+	2 -> 18
+	2 -> 19
+	20 -> 19
+	2 -> 20
+	2 -> 21
+	22 -> 21
+	2 -> 22
+	2 -> 23
+	24 -> 23
+	2 -> 24
+	2 -> 25
+	26 -> 25
+	2 -> 26
+	2 -> 27
+	28 -> 27
+	2 -> 28
+	2 -> 29
+	30 -> 29
+	2 -> 30
+	2 -> 31
+	32 -> 31
+	2 -> 32
+	2 -> 33
+	34 -> 33
+	2 -> 34
+	2 -> 35
+	36 -> 35
+	2 -> 36
+	2 -> 37
+	38 -> 37
+	2 -> 38
+	2 -> 39
+	40 -> 39
+	2 -> 40
+	2 -> 41
+	42 -> 41
+	2 -> 42
+	2 -> 43
+	44 -> 43
+	2 -> 44
+	2 -> 45
+	46 -> 45
+	2 -> 46
+	2 -> 47
+	48 -> 47
+	2 -> 48
+	2 -> 49
+	50 -> 49
+	2 -> 50
+	2 -> 51
+	52 -> 51
+	2 -> 52
+	2 -> 53
+	54 -> 53
+	2 -> 54
+	2 -> 55
+	56 -> 55
+	2 -> 56
+	2 -> 57
+	58 -> 57
+	2 -> 58
+	2 -> 59
+	60 -> 59
+	2 -> 60
+	2 -> 61
+	62 -> 61
+	2 -> 62
+	2 -> 63
+	64 -> 63
+	2 -> 64
+	2 -> 65
+	66 -> 65
+	2 -> 66
+	2 -> 67
+	68 -> 67
+	2 -> 68
+	2 -> 69
+	70 -> 69
+	2 -> 70
+	2 -> 71
+	72 -> 71
+	2 -> 72
+	2 -> 73
+	74 -> 73
+	2 -> 74
+	2 -> 75
+	76 -> 75
+	2 -> 76
+	2 -> 77
+	78 -> 77
+	2 -> 78
+	2 -> 79
+	80 -> 79
+	2 -> 80
+	2 -> 81
+	82 -> 81
+	2 -> 82
+	2 -> 83
+	84 -> 83
+	2 -> 84
+	2 -> 85
+	86 -> 85
+	2 -> 86
+	2 -> 87
+	88 -> 87
+	2 -> 88
+	2 -> 89
+	90 -> 89
+	2 -> 90
+	2 -> 91
+	92 -> 91
+	2 -> 92
+	2 -> 93
+	94 -> 93
+	2 -> 94
+	2 -> 95
+	96 -> 95
+	2 -> 96
+	2 -> 97
+	98 -> 97
+	2 -> 98
+	2 -> 99
+	100 -> 99
+	2 -> 100
+	2 -> 101
+	102 -> 101
+	2 -> 102
+	2 -> 103
+	104 -> 103
+	2 -> 104
+	2 -> 105
+	106 -> 105
+	2 -> 106
+	2 -> 107
+	108 -> 107
+	2 -> 108
+	2 -> 109
+	110 -> 109
+	2 -> 110
+	2 -> 111
+	112 -> 111
+	2 -> 112
+	2 -> 113
+	114 -> 113
+	2 -> 114
+	2 -> 115
+	116 -> 115
+	2 -> 116
+	2 -> 117
+	118 -> 117
+	2 -> 118
+	2 -> 119
+	120 -> 119
+	2 -> 120
+	2 -> 121
+	122 -> 121
+	2 -> 122
+	2 -> 123
+	124 -> 123
+	2 -> 124
+	2 -> 125
+	126 -> 125
+	2 -> 126
+	2 -> 127
+	128 -> 127
+	2 -> 128
+	2 -> 129
+	130 -> 129
+	2 -> 130
+	2 -> 131
+	132 -> 131
+	2 -> 132
+	2 -> 133
+	134 -> 133
+	2 -> 134
+	2 -> 135
+	136 -> 135
+	2 -> 136
+	2 -> 137
+	138 -> 137
+	2 -> 138
+	2 -> 139
+	140 -> 139
+	2 -> 140
+	2 -> 141
+	142 -> 141
+	2 -> 142
+	2 -> 143
+	144 -> 143
+	2 -> 144
+	2 -> 145
+	146 -> 145
+	2 -> 146
+	2 -> 147
+	148 -> 147
+	2 -> 148
+	2 -> 149
+	150 -> 149
+	2 -> 150
+	2 -> 151
+	152 -> 151
+	2 -> 152
+	2 -> 153
+	154 -> 153
+	2 -> 154
+	2 -> 155
+	156 -> 155
+	2 -> 156
+	2 -> 157
+	158 -> 157
+	2 -> 158
+	2 -> 159
+	160 -> 159
+	2 -> 160
+	2 -> 161
+	162 -> 161
+	2 -> 162
+	2 -> 163
+	164 -> 163
+	2 -> 164
+	2 -> 165
+	166 -> 165
+	2 -> 166
+	2 -> 167
+	168 -> 167
+	2 -> 168
+	2 -> 169
+	170 -> 169
+	2 -> 170
+}            

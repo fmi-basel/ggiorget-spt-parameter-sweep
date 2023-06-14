@@ -1,0 +1,66 @@
+configfile: "parameters/parameters_dna.yaml"
+
+rule all:
+    input:
+        expand("/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/dataframe/denoised/parameter_sweep_hmax_n_{n}_threshold_{threshold_fit}.csv",
+        n=config['n'],threshold_fit=config['threshold_fit'])
+
+rule open_ground_truth:
+    input:
+        "/tungstenfs/scratch/ggiorget/Pia/for_nessim/GT_w2/combined.csv"
+    output: 
+        "results/dna/dataframe/ground_truth.csv"
+    run:
+        import pandas as pd
+        df_gt = pd.read_csv(input[0])
+        df_gt.rename(columns={'POSITION_X':'x','POSITION_Y':'y','FRAME':'frame'},inplace=True)
+        df_gt = df_gt.astype({'x': float,'y':float})
+        df_gt.image = [x.replace('.csv','.tif') for x in df_gt.image.values]
+        df_gt.to_csv(output[0])
+
+rule openfiles:
+    input:
+        "/tungstenfs/scratch/ggiorget/nessim/microscopy_data/20230418_low_laser_power/10mW/denoised/"
+    output:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/results.txt"
+    script:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/LoG/open_file.py"
+
+
+rule compute_hparam:
+    input: 
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/results.txt",
+        "/tungstenfs/scratch/ggiorget/Pia/for_nessim/GT_w2/",
+    output:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/denoised/h_param_noisy.csv"
+    script:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/scripts/compute_h_param.py"
+
+
+rule build_hmax:
+    input:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/results.txt",
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/denoised/h_param_noisy.csv",
+        "/tungstenfs/scratch/ggiorget/Pia/for_nessim/GT_w2/"
+    output:
+        temp("/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/dataframe/denoised/hmax_n_{n}_threshold_{threshold_fit}.csv")
+    script:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/scripts/build_hmax.py"
+
+rule evaluate_hmax:
+    input:
+        "results/dna/dataframe/ground_truth.csv","/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/dataframe/denoised/hmax_n_{n}_threshold_{threshold_fit}.csv",
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/results.txt"
+    output:"/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/dataframe/denoised/parameter_sweep_hmax_n_{n}_threshold_{threshold_fit}.csv"
+    script:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/scripts/evaluate_hmax.py"
+    
+
+rule combine_hmax:
+    input:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/dataframe/denoised/"
+    output:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/H_max/results/dna/final/denoised/final_hmax_noisy.csv"
+    script:
+        "scripts/combine_results_hmax.py"
+
