@@ -1,0 +1,87 @@
+configfile: "parameters.yaml"
+
+rule all:
+    input:
+        #expand("results/parameter_sweep_astropy_treshold_{threshold_astropy}_fwhm_{fwhm_astro}.csv",
+        #threshold_astropy=config['threshold_astropy'],fwhm_astro=config['fwhm_astro']),
+        expand("/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/normalized/noisy_sweep/parameter_sweep_laptrack_mins_{mins}_maxs_{maxs}_threshold_{threshold_laptrack}.csv",
+        mins=config['mins'],maxs=config['maxs'],threshold_laptrack=config['threshold_laptrack'])
+
+rule open_ground_truth:
+    input:
+        "/tungstenfs/scratch/ggiorget/nessim/spt/dataframes/ground_truth/ground_truth.csv"
+    output: 
+        "results/ground_truth.csv"
+    run:
+        import pandas as pd
+        df_gt = pd.read_csv(input[0])
+        df_gt.rename(columns={'POSITION_X':'x','POSITION_Y':'y'},inplace=True)
+        df_gt = df_gt.astype({'x': float,'y':float})
+        df_gt.to_csv(output[0])
+
+rule openfiles:
+    input:
+        "/tungstenfs/scratch/ggiorget/nessim/spt/noisy/"
+    output:
+        "results/results_noisy.txt"
+    script:
+        "open_file.py"
+
+rule build_astropy:
+    input:
+        "/tungstenfs/scratch/ggiorget/nessim/spt/denoised/",
+        "results/results_denoised.txt"
+    output:
+         temp("/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/dataframe/astro/astro_{threshold_astropy}_{fwhm_astro}.csv")
+    script:
+        "build_astropy.py"
+
+rule build_laptrack:
+    input:
+        "/tungstenfs/scratch/ggiorget/nessim/spt/noisy/",
+        "results/results_noisy.txt"
+    output:
+        temp("/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/dataframe/laptrack/normalized/noisy_sweep/lap_{mins}_{maxs}_{threshold_laptrack}.csv")
+    params:
+        config["nums"]
+    script:
+        "build_laptrack.py"
+    
+
+rule test_parameter_astro:
+    input:
+        "results/ground_truth.csv",
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/dataframe/astro/astro_{threshold_astropy}_{fwhm_astro}.csv",
+        "results/results_denoised.txt"
+    output:
+        temp("results/parameter_sweep_astropy_treshold_{threshold_astropy}_fwhm_{fwhm_astro}.csv")
+    script:
+        "build_truth_table.py"
+
+rule test_parameter_laptrack:
+    input:
+        "results/ground_truth.csv",
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/dataframe/laptrack/normalized/noisy_sweep/lap_{mins}_{maxs}_{threshold_laptrack}.csv",
+        "results/results_denoised.txt"
+    output:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/normalized/noisy_sweep/parameter_sweep_laptrack_mins_{mins}_maxs_{maxs}_threshold_{threshold_laptrack}.csv"
+    script:
+        "build_truth_table.py"
+    
+
+rule combine_laptrack:
+    input:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/normalized/noisy_sweep/"
+    output:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/final/normalized/noisy_sweep/final_laptrack_noisy.csv"
+    script:
+        "combine_results_laptrack.py"
+
+rule combine_results_astropy:
+    input:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/"
+    output:
+        "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_spot_detection/results/final/final_astropy.csv"
+    script:
+        "combine_results_astro.py"
+

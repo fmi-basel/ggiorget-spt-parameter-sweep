@@ -1,0 +1,156 @@
+import pandas as pd
+import sys
+sys.path.insert(0, os.path.abspath('src/'))
+import tracking_utils as tu
+from tifffile import imread
+import numpy as np 
+import os
+import re
+import nums_from_string as nfs
+
+configfile: "parameters/tracking_params_50pM.yaml"
+
+concentration = 50
+time_btw_frame = 10
+sweep= "new_crop"
+
+wildcard_constraints:
+    concentration = r'\d+',
+    time_btw_frame = r'\d+',
+    sweep = r'\w+'
+
+im_path = f'/tungstenfs/scratch/ggiorget/nessim/tracking/ground_truth/{concentration}pM/20230328_Rad21-Halo_SPT_1C5_NIPBL_LP4_40mW_{concentration}pM_30min_1_w1FullseqTIRF-Cy5-mCherryGFPWithSMB_w1_crop_v2.tif'
+
+
+def compute_frame_rate(im:str,time_btw_frame:int):
+
+    max_frame = im.shape[0]
+
+    frame_rate = time_btw_frame//2
+
+    seq = []
+
+    comb_0 = np.arange(start=0,stop=max_frame,step=frame_rate)
+
+    seq.append(comb_0)
+
+    for i in range(1,comb_0[1]):
+        seq.append(np.arange(start=i,stop=max_frame,step=frame_rate))
+
+    len_seq = np.arange(start=0,stop=len(seq),step=1)
+    return seq,len_seq
+
+seq,len_seq = compute_frame_rate(
+    imread(im_path),time_btw_frame)
+# print(seq)
+print(f'The number of sequences that will be tested is: {len(len_seq)}')
+
+# define the file names as variables 
+
+evaluated_files = expand("/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/evaluation/track_cost_cutoff_{track_cost_cutoff}_gap_closing_cost_cutoff_{gap_closing_cost_cutoff}_gap_closing_max_frame_count_{gap_closing_max_frame_count}_seq_{seq}.csv",
+        concentration=concentration,time_btw_frame=time_btw_frame,
+        sweep=sweep,
+        track_cost_cutoff=config['track_cost_cutoff'],gap_closing_cost_cutoff=config['gap_closing_cost_cutoff'],
+        gap_closing_max_frame_count=config['gap_closing_max_frame_count'],seq=len_seq)
+
+gt_files = expand('/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/gt_{concentration}pM_seq_{seq}.csv',concentration=concentration,time_btw_frame=time_btw_frame,sweep=sweep,seq=len_seq)
+exp_files = expand('/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/exp_{concentration}pM_seq_{seq}.csv',concentration=concentration,time_btw_frame=time_btw_frame,sweep=sweep,seq=len_seq)
+ground_truth = f'/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/test_ground_truth.csv'
+
+# define the intermediate files as variables
+
+tracks_gt =  f'/tungstenfs/scratch/ggiorget/nessim/tracking/ground_truth/{concentration}pM/tracks_{concentration}pM_v2_filtered.csv'
+gt_filtered = '/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/gt_{concentration}pM_seq_{seq}.csv'
+detections = f'/tungstenfs/scratch/ggiorget/nessim/tracking/ground_truth/{concentration}pM/detections_{concentration}pM_crop_v2.csv'
+exp_filtered = '/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/exp_{concentration}pM_seq_{seq}.csv'
+tracks_exp = '/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/track_cost_cutoff_{track_cost_cutoff}_gap_closing_cost_cutoff_{gap_closing_cost_cutoff}_gap_closing_max_frame_count_{gap_closing_max_frame_count}_seq_{seq}.csv'
+
+evaluated_track = "/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/evaluation/track_cost_cutoff_{track_cost_cutoff}_gap_closing_cost_cutoff_{gap_closing_cost_cutoff}_gap_closing_max_frame_count_{gap_closing_max_frame_count}_seq_{seq}.csv"
+combined_file = f"/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/evaluation/combined/combined_results.csv"
+dir_combine = f"/tungstenfs/scratch/ggiorget/nessim/snakemake/benchmark_tracking/results/{concentration}pM/dt_{time_btw_frame}/{sweep}/evaluation/"
+
+# rules
+
+rule all:
+    input:
+        evaluated_files,
+        ground_truth,
+        exp_files,
+        gt_files
+
+rule open_ground_truth:
+    input: tracks_gt
+    output: ground_truth
+    run: 
+        gt = tu.open_gt(input[0])
+        gt.to_csv(output[0], index=False)
+
+rule filter_frame_rate:
+    input: ground_truth,detections
+    output: gt_filtered,exp_filtered
+
+    run: 
+        df_ground_truth = pd.read_csv(input[0])
+        df_detections = pd.read_csv(input[1])
+
+        # cut the ground truth
+        tracks_filtered = tu.filter_df_based_on_frame(df_ground_truth,seq) # list
+        detections_filtered = tu.filter_df_based_on_frame(df_detections,seq) # list
+        print(tracks_filtered)
+        print(detections_filtered)
+        # add a way to differentiate the tracks cutted and save a combined version of them
+
+        ## save the filtered tracks
+        tracks_filtered[int(wildcards.seq)].to_csv(output[0], index=False)
+        detections_filtered[int(wildcards.seq)].to_csv(output[1], index=False)
+
+rule build_tracks:
+    input: exp_filtered
+        # the parameters
+    output: tracks_exp
+    run: 
+        detections = pd.read_csv(input[0])
+        _,tracks_match = tu.track(df = detections,track_cost_cutoff=float(wildcards.track_cost_cutoff),
+        gap_closing_cost_cutoff=float(wildcards.gap_closing_cost_cutoff),gap_closing_max_frame_count=int(wildcards.gap_closing_max_frame_count),track_dist_metric='sqeuclidean')
+        tracks_match.to_csv(output[0], index=False)
+
+
+rule evaluate_tracks:
+    input: gt_filtered,tracks_exp
+    output: evaluated_track
+    run: 
+        df_track_ground_truth = pd.read_csv(input[0]) # the ground_truth dataframe
+        df_track_experimental = pd.read_csv(input[1]) # the experimental dataframe (linking table)
+
+        # change the coordinate to be consistent with the ground truth
+        df_track_experimental.rename(columns={'x':'a'},inplace=True)
+        df_track_experimental.rename(columns={'y':'x'},inplace=True)
+        df_track_experimental.rename(columns={'a':'y'},inplace=True) # to be consistent with the ground truth
+        
+        IoU_table = tu.compute_IoU(df_track_experimental,df_track_ground_truth)
+        IoU_table.to_csv(output[0], index=False)
+
+
+rule combine_results:
+    input: dir_combine
+    output: combined_file
+    run: 
+        path = input[0]
+        df = pd.DataFrame()
+        for seq,files in enumerate(os.listdir(input[0])):
+            if files == 'combined':
+                continue
+            nums = nfs.get_nums(files)
+            df_temp = pd.read_csv(path+'/'+files)
+            df_temp['track_cost_cutoff'] = [nums[0]]*len(df_temp)
+            df_temp['gap_closing_cost_cutoff'] = [nums[1]]*len(df_temp)
+            df_temp['gap_closing_max_frame_count'] = [nums[2]]*len(df_temp)
+            df_temp['seq'] = [nums[3]]*len(df_temp)
+            df = pd.concat([df,df_temp])
+        df.to_csv(output[0])
+
+print(combined_file)
+
+print('_____________________________________________________________________')
+
+print('Done!')

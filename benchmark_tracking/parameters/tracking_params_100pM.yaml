@@ -1,0 +1,24 @@
+
+gap_closing_cost_cutoff:
+  - 0.0
+  - 4.5
+  - 5.0
+  - 5.5
+  - 6.0
+
+track_cost_cutoff:
+  - 1.0
+  - 2.0
+  - 3.0
+  - 4.0
+  - 5.0
+  - 6.0
+
+
+gap_closing_max_frame_count:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
