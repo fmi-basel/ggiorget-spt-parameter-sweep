@@ -15,3 +15,4 @@ benchmark_tracking/.ipynb_checkpoints/
 benchmark_tracking/src/__pycache__/
 benchmark_tracking/final_dataframes/
 benchmark_tracking/results
+benchmark_tracking/plots
